@@ -1,0 +1,21 @@
+{% extends 'groups/group_base.html' %}
+
+{% block pregroup %}
+
+
+
+<div class="content">
+
+  <h1>{{group.name}}</h1>
+  <h2>Member count: {{ group.members.count }}</h2>
+
+  {% if not user in group.members.all %}
+  <a href="{% url 'groups:join' %}" class="btn btn-lg btn-fill btn-warning"><span class="glyphicon glyphicon-ok-circle"></span> Join</a>
+
+  {% else %}
+  <a href="{% url 'groups:leave' %}" class="btn btn-lg btn-fill btn-warning"><span class="glyphicon glyphicon-ok-circle"></span> Leave</a>
+  {% endif %}
+
+</div>
+
+{% endblock %}

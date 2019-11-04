@@ -1,0 +1,27 @@
+{% extends 'groups/group_base.html' %}
+
+
+{% block pregroup %}
+  <h2>Group List Page</h2>
+<div class="content">
+
+  {% if user.is_authenticated %}
+  <h2>Wecome back, {{ user.username}}</h2>
+
+
+  {% for group in object_list%}
+
+<p>Group Name: <a href="{% url 'groups:groupdetail' slug=group.slug %}">{{ group.name }}</a> </p>
+<p>Group Description: {{ group.description_html|safe }}</p>
+<p>Group member counts: {{ group.members.count|pluralize }}</p>
+<p>Group post counts!: {{ group.posts.count|pluralize }}</p>
+
+    {% empty %}
+   there are no groups availabe
+
+  {% endfor %}
+
+{% endif %}
+</div>
+
+{% endblock %}

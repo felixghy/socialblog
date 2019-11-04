@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+  <h2>Post List Page</h2>
+
+
+  {% for post in object_list%}
+
+<p> <h1><a href="{% url 'posts:details' username=post.user.username pk=post.pk %}">{{ post.message }}</a></h1></p>
+<p>Create Date: {{ post.created_at }} </p>
+
+    {% empty %}
+   there are no posts availabe
+
+  {% endfor %}
+
+{% endblock %}
